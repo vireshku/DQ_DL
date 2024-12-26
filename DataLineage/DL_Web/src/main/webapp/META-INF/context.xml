@@ -1,0 +1,25 @@
+<!--
+ *
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer	viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+
+  -->
+
+<Context>
+
+    <!--
+        MongoDB Connection URL.
+        Format: mongodb://host:port/database_name
+    -->
+    <Environment name="spline/mongodb/url" type="java.lang.String" override="false"/>
+
+    <!--
+        Adaptive timeout settings:
+            min - lower threshold for computed request timeout (in millis).
+            duration_factor - a coefficient that the estimated request duration is multiplied by to compute a timeout value.
+    -->
+ 
+</Context>

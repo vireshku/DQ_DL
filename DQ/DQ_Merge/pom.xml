@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ms.jedi.dq</groupId>
+		<artifactId>DQ</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>DQ_Merge</artifactId>
+	<name>DQ_Merge</name>
+	<description>DQ_Merge</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ms.jedi.dq</groupId>
+			<artifactId>Core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>src/main/scala</sourceDirectory>
+		<testSourceDirectory>src/test/scala</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+										<exclude>META-INF/*.SF</exclude>
+									</excludes>
+
+								</filter>
+							</filters>
+							<artifactSet>
+								<excludes>
+									<exclude>com.apple:AppleJavaExtensions:*</exclude>
+									<exclude>javax.servlet:*</exclude>
+									<exclude>org.apache.hadoop:*</exclude>
+									<exclude>org.apache.maven.plugins:*</exclude>
+									<exclude>org.apache.parquet:*</exclude>
+									<exclude>org.apache.spark:*</exclude>
+									<exclude>org.scala-lang:*</exclude>
+								</excludes>
+							</artifactSet>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<manifestEntries>
+										<Main-Class>com.ms.jedi.dq.merge.process.DQMergeProcessor</Main-Class>
+										<!-- <Main-Class>Jobs</Main-Class> -->
+										<Build-Number>1.0</Build-Number>
+									</manifestEntries>
+								</transformer>
+							</transformers>
+							<finalName>DQMERGE</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<!-- <filters> Ensures that the config.properties file is always loaded 
+			from the configuration directory of the active Maven profile. <filter>src/main/resources/${build.profile.id}/core-exec.properties</filter> 
+			</filters> <resources> Placeholders that are found from the files located 
+			in the configured resource directories are replaced with the property values 
+			found from the profile specific configuration file. <resource> <filtering>true</filtering> 
+			<directory>src/main/resources/${build.profile.id}</directory> </resource> 
+			</resources> -->
+	</build>
+</project>

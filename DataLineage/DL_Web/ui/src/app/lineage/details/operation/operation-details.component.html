@@ -1,0 +1,234 @@
+<!--
+/**
+ *
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer	viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+ */
+
+  -->
+
+<div>
+    <details-panel-header
+            [caption]="operation.mainProps.name"
+            [faIcon]="getOperationIcon()"
+            iconColor="steelblue"></details-panel-header>
+
+    <div class="body">
+        <p-accordion [multiple]="true">
+
+            <!-- Section: Read -->
+            <section *ngIf="operationType == 'Read'">
+                <p-accordionTab [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="Read {{ operation.sourceType }}"
+                                faIcon="fa-table"
+                                iconColor="black"></details-section-header>
+                    </p-header>
+                    <ul>
+                        <li *ngFor="let source of operation.sources"
+                            title="{{ source.path }}">{{ source.path }}
+                        </li>
+                    </ul>
+                </p-accordionTab>
+            </section>
+
+            <!-- Section: Write -->
+            <section *ngIf="operationType == 'Write'">
+                <p-accordionTab [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="Write to {{ operation.destinationType }}"
+                                faIcon="fa-floppy-o"
+                                iconColor="steelblue"></details-section-header>
+                    </p-header>
+                    <ul>
+                        <li title="{{ operation.path }}">{{ operation.path }}</li>
+                    </ul>
+                </p-accordionTab>
+            </section>
+
+            <!-- Section: Filter -->
+            <section *ngIf="operationType == 'Filter'">
+                <p-accordionTab [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="Filter by"
+                                faIcon="fa-filter"
+                                iconColor="steelblue"></details-section-header>
+                    </p-header>
+                    <ul>
+                        <li>
+                            <expression-inline [expr]="operation.condition"></expression-inline>
+                        </li>
+                    </ul>
+                </p-accordionTab>
+            </section>
+
+            <!-- Section: Sort -->
+            <section *ngIf="operationType == 'Sort'">
+                <p-accordionTab [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="Sort by"
+                                faIcon="fa-sort-amount-desc"
+                                iconColor="steelblue"></details-section-header>
+                    </p-header>
+                    <ul class="sort-orders">
+                        <li *ngFor="let order of operation.orders">
+                            <i class="fa {{order.direction == 'ASC' ? 'fa-long-arrow-down' : 'fa-long-arrow-up'}}"
+                               title="{{order.direction}}"></i>
+                            <expression-inline [expr]="order.expression"></expression-inline>
+                        </li>
+                    </ul>
+                </p-accordionTab>
+            </section>
+
+            <!-- Section: Aggregate -->
+            <section *ngIf="operationType == 'Aggregate'">
+                <p-accordionTab [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="Group by"
+                                faIcon="fa-object-group"
+                                iconColor="steelblue"></details-section-header>
+                    </p-header>
+                    <ul>
+                        <li *ngFor="let grExpr of operation.groupings">
+                            <expression-inline [expr]="grExpr"></expression-inline>
+                        </li>
+                    </ul>
+                </p-accordionTab>
+                <p-accordionTab [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="Aggregations"
+                                faIcon="fa-calculator"
+                                iconColor="steelblue"></details-section-header>
+                    </p-header>
+                    <ul>
+                        <ng-template ngFor let-name [ngForOf]="keys(operation.aggregations)">
+                            <li>
+                                <expression-inline [expr]="operation.aggregations[name]"></expression-inline>
+                            </li>
+                        </ng-template>
+                    </ul>
+                </p-accordionTab>
+            </section>
+
+            <!-- Section: Projection -->
+            <section *ngIf="operationType == 'Projection'">
+                <p-accordionTab *ngIf="getDroppedAttributesIfAny(); let droppedAttrs" [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="Dropped Attributes"
+                                faIcon="fa-columns"
+                                iconColor="steelblue"></details-section-header>
+                    </p-header>
+                    <ul>
+                        <li *ngFor="let attr of droppedAttrs">
+                            <span class="expr-attr-removal"
+                                  title="Removed attribute '{{ attr.name }}'">
+                                <i>a</i>
+                                <span>{{ attr.name }}</span>
+                            </span>
+                        </li>
+                    </ul>
+                </p-accordionTab>
+
+                <p-accordionTab *ngIf="operation.transformations?.length" [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="Transformations"
+                                faIcon="fa-cogs"
+                                iconColor="steelblue"></details-section-header>
+                    </p-header>
+                    <ul>
+                        <li *ngFor="let expr of operation.transformations">
+                            <span class="expr-lambda">
+                                <i title="Expression">λ=</i>
+                                <expression-inline [expr]="expr"></expression-inline>
+                            </span>
+                        </li>
+                    </ul>
+                </p-accordionTab>
+            </section>
+
+            <!-- Section: Join -->
+            <section *ngIf="operationType == 'Join'">
+                <p-accordionTab [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="{{ operation.joinType }} join on"
+                                faIcon="fa-code-fork"
+                                iconColor="steelblue"></details-section-header>
+                    </p-header>
+                    <ul>
+                        <li title="Expression">
+                            <expression-inline [expr]="operation.condition"></expression-inline>
+                        </li>
+                    </ul>
+                </p-accordionTab>
+            </section>
+
+            <!-- Section: Union -->
+            <section *ngIf="operationType == 'Union'">
+            </section>
+
+            <!-- Section: Generic -->
+            <section *ngIf="operationType == 'Generic'">
+                <p-accordionTab [selected]="true">
+                    <p-header>
+                        <details-section-header
+                                caption="Operation source code"
+                                faIcon="fa-code"
+                                iconColor="steelblue"></details-section-header>
+                    </p-header>
+                    <code class="small" title="Internal operation representation">{{operation.rawString}}</code>
+                </p-accordionTab>
+            </section>
+
+            <!-- Section: Input -->
+            <ng-container *ngIf="operationType != 'Read'">
+                <section *ngFor="let input of operation.mainProps.inputs">
+                    <p-accordionTab [selected]="true">
+                        <p-header>
+                            <details-section-header
+                                    caption="Input"
+                                    faIcon="fa-arrow-circle-right"
+                                    iconColor="green"></details-section-header>
+                        </p-header>
+                        <attribute-list
+                                [attrs]="getDatasetAttributes(input)"
+                                (attrClicked)="selectAttribute($event)"
+                                [selectedAttrIDs]="selectedAttrIDs">
+                        </attribute-list>
+                    </p-accordionTab>
+                </section>
+            </ng-container>
+
+            <!-- Section: Output -->
+            <ng-container *ngIf="operationType != 'Write'">
+                <section *ngIf="operation.mainProps.output">
+                    <p-accordionTab [selected]="true">
+                        <p-header>
+                            <details-section-header
+                                    caption="Output"
+                                    faIcon="fa-arrow-circle-left"
+                                    iconColor="firebrick"></details-section-header>
+                        </p-header>
+                        <attribute-list
+                                [attrs]="getDatasetAttributes(operation.mainProps.output)"
+                                (attrClicked)="selectAttribute($event)"
+                                [selectedAttrIDs]="selectedAttrIDs">
+                        </attribute-list>
+                    </p-accordionTab>
+                </section>
+            </ng-container>
+
+        </p-accordion>
+    </div>
+</div>

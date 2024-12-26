@@ -1,0 +1,57 @@
+/*
+ *
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer		viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+ */
+
+
+:host {
+  height: 100%;
+  width: 100%;
+
+  > div {
+    height: 100%;
+
+    mat-grid-list {
+      height: 100%;
+    }
+    mat-grid-tile {
+      height: 100%;
+    }
+
+    lineage-overview-graph {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+
+    .graph-footer {
+      position: absolute;
+      right: 25px;
+      bottom: 20px;
+
+      background: white;
+      opacity: 0.8;
+      border-radius: 100px;
+      box-shadow: 0 0 100px 50px white;
+
+      .mat-button {
+        min-width: 0;
+      }
+    }
+
+    .details-container {
+      height: 100%;
+      width: 100%;
+      background: whitesmoke;
+
+      > div {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

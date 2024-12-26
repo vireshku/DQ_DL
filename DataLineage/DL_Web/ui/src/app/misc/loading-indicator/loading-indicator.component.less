@@ -1,0 +1,62 @@
+/*
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer		viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+ */
+
+
+:host {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.15s;
+  transition-delay: 0s;
+
+  &.active {
+    opacity: 1;
+    z-index: 999;
+
+    &.delayed {
+      transition: opacity 1s;
+      transition-delay: 0.8s;
+    }
+  }
+
+  .background {
+    opacity: 0.85;
+    background: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .foreground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+  }
+
+  p {
+    width: 100%;
+    text-align: center;
+    color: #337ab7;
+
+    i {
+      font-weight: 800;
+    }
+
+    span {
+      font-size: x-large;
+      display: block;
+      padding-top: 15px;
+    }
+  }
+}

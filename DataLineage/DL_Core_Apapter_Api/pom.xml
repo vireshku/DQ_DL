@@ -1,0 +1,131 @@
+<!-- /** * * @author viresh kumar <virkumar@microsoft.com.com> * @designer 
+	viresh kumar <virkumar@microsoft.com.com> * @developer viresh kumar <virkumar@microsoft.com.com> 
+	* @version 1.0 * @since 1.0 */ -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ms.jedi.data.lineage</groupId>
+		<artifactId>DL_Parent</artifactId>
+		<version>1.0</version>
+		<relativePath>../DL_Parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>DL_Core_Apapter_Api</artifactId>
+	<packaging>jar</packaging>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_${scala.compat.version}</artifactId>
+			<version>2.4.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_${scala.compat.version}</artifactId>
+			<version>2.4.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ms.jedi.data.lineage</groupId>
+			<artifactId>DL_Common</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<!-- The configuration of the development profile -->
+		<profile>
+			<id>dev</id>
+			<!-- The development profile is active by default -->
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the development profile is dev, we must set the value of the build.profile.id 
+					property to dev. -->
+				<build.profile.id>dev</build.profile.id>
+			</properties>
+		</profile>
+		<!-- The configuration of the production profile -->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the production profile is prod, we must set the value of the build.profile.id 
+					property to prod. -->
+				<build.profile.id>prod</build.profile.id>
+			</properties>
+		</profile>
+		<!-- The configuration of the testing profile -->
+		<profile>
+			<id>sit</id>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the testing profile is test, we must set the value of the build.profile.id 
+					property to test. -->
+				<build.profile.id>sit</build.profile.id>
+			</properties>
+		</profile>
+		<profile>
+			<id>uat</id>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the testing profile is test, we must set the value of the build.profile.id 
+					property to test. -->
+				<build.profile.id>uat</build.profile.id>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+
+		<sourceDirectory>src/main</sourceDirectory>
+		<testSourceDirectory>src/test/scala</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

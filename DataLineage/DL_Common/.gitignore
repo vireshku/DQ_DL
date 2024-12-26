@@ -1,0 +1,21 @@
+/target/
+*.classpath
+*.project
+*.cache-main
+org.eclipse.*
+org.scala-ide.*
+*.settings
+org.eclipse.*
+
+/target/
+*.class
+*.log
+
+# sbt specific
+.cache/
+.history/
+.lib/
+dist/*
+target/
+*.cache-main/
+*.project/

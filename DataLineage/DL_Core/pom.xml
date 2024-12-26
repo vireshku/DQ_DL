@@ -1,0 +1,271 @@
+<!-- /** * * @author viresh kumar <virkumar@microsoft.com.com> * @designer 
+	viresh kumar <virkumar@microsoft.com.com> * @developer viresh kumar <virkumar@microsoft.com.com> 
+	* @version 1.0 * @since 1.0 */ -->
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ms.jedi.data.lineage</groupId>
+		<artifactId>DL_Parent</artifactId>
+		<version>1.0</version>
+		<relativePath>../DL_Parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>DL_Core</artifactId>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_${scala.compat.version}</artifactId>
+			<scope>provided</scope>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_${scala.compat.version}</artifactId>
+			<scope>provided</scope>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.databricks</groupId>
+			<artifactId>spark-xml_${scala.compat.version}</artifactId>
+			<version>0.4.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.scalaz</groupId>
+			<artifactId>scalaz-core_${scala.compat.version}</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4s</groupId>
+			<artifactId>slf4s-api_${scala.compat.version}</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ms.jedi.data.lineage</groupId>
+			<artifactId>DL_Common</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.salat</groupId>
+			<artifactId>salat-core_${scala.compat.version}</artifactId>
+			<version>${salat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.salat</groupId>
+			<artifactId>salat-util_${scala.compat.version}</artifactId>
+			<version>${salat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.6.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.scala-lang/scalap -->
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scalap</artifactId>
+			<version>2.11.12</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mongodb/bson -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>bson</artifactId>
+			<version>3.10.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mongodb/casbah-core -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>casbah-core_2.11</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mongodb/casbah-commons -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>casbah-commons_2.11</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mongodb/casbah-query -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>casbah-query_2.11</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.10.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.10.1</version>
+		</dependency>
+
+
+	</dependencies>
+
+	<profiles>
+		<!-- The configuration of the development profile -->
+		<profile>
+			<id>dev</id>
+			<!-- The development profile is active by default -->
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the development profile is dev, we must set the value of the build.profile.id 
+					property to dev. -->
+				<build.profile.id>dev</build.profile.id>
+			</properties>
+		</profile>
+		<!-- The configuration of the production profile -->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the production profile is prod, we must set the value of the build.profile.id 
+					property to prod. -->
+				<build.profile.id>prod</build.profile.id>
+			</properties>
+		</profile>
+		<!-- The configuration of the testing profile -->
+		<profile>
+			<id>sit</id>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the testing profile is test, we must set the value of the build.profile.id 
+					property to test. -->
+				<build.profile.id>sit</build.profile.id>
+			</properties>
+		</profile>
+		<profile>
+			<id>uat</id>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the testing profile is test, we must set the value of the build.profile.id 
+					property to test. -->
+				<build.profile.id>uat</build.profile.id>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+
+		<sourceDirectory>src/main</sourceDirectory>
+		<testSourceDirectory>src/test/scala</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+										<exclude>META-INF/*.SF</exclude>
+									</excludes>
+
+								</filter>
+							</filters>
+							<artifactSet>
+								<excludes>
+									<exclude>com.apple:AppleJavaExtensions:*</exclude>
+									<exclude>javax.servlet:*</exclude>
+									<exclude>org.apache.hadoop:*</exclude>
+									<exclude>org.apache.maven.plugins:*</exclude>
+									<exclude>org.apache.parquet:*</exclude>
+									<exclude>org.apache.spark:*</exclude>
+									<!-- <exclude>org.scala-lang:*</exclude> -->
+								</excludes>
+							</artifactSet>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<manifestEntries>
+										<Main-Class>com.ms.jedi.dl.core.initial.SparkLineageInitializer</Main-Class>
+										<!-- <Main-Class>Jobs</Main-Class> -->
+										<Build-Number>1.0</Build-Number>
+									</manifestEntries>
+								</transformer>
+							</transformers>
+							<finalName>datalineage-exec</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<filters>
+			<!-- Ensures that the config.properties file is always loaded from the 
+				configuration directory of the active Maven profile. -->
+			<!-- <filter>src/main/resources/${build.profile.id}/core-exec.properties</filter> -->
+		</filters>
+		<resources>
+			<!-- Placeholders that are found from the files located in the configured 
+				resource directories are replaced with the property values found from the 
+				profile specific configuration file. -->
+			<!-- <resource> <filtering>true</filtering> <directory>src/main/resources/${build.profile.id}</directory> 
+				</resource> -->
+		</resources>
+	</build>
+
+</project>

@@ -1,0 +1,62 @@
+/*
+ *
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer		viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+ */
+
+
+.fld-type {
+  position: absolute;
+  top: 3px;
+  right: 0;
+  width: 70px;
+}
+
+data-type-view {
+  width: 53px;
+  display: inline-block;
+}
+
+:host {
+  /deep/ .node-wrapper {
+    position: relative;
+  }
+
+  /deep/ .tree-children {
+    padding-left: 20px;
+  }
+
+  /deep/ .tree-node {
+    &:hover {
+      background-color: darken(white, 3%);
+    }
+
+    &.tree-node-active {
+      color: #fff;
+      background: #337ab7;
+
+      &:hover, .tree-node:hover{
+        background-color: darken(#337ab7, 3%);
+      }
+    }
+  }
+
+  /deep/ .node-content-wrapper {
+    background: transparent;
+    box-shadow: none;
+    opacity: 1 !important;
+    padding: 5px 0 3px 0;
+    cursor: pointer;
+  }
+
+  /deep/ tree-node-expander {
+    display: none;
+  }
+
+  /deep/ tree-viewport {
+    overflow: hidden;
+  }
+}

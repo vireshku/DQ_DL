@@ -1,0 +1,12 @@
+/target/
+*.class
+*.log
+
+# sbt specific
+.cache/
+.history/
+.lib/
+dist/*
+target/
+*.cache-main/
+*.project/

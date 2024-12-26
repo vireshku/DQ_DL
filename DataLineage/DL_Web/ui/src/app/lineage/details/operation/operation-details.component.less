@@ -1,0 +1,90 @@
+/*
+ *
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer		viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+ */
+
+
+:host > div {
+  position: relative;
+  height: 100%;
+}
+
+.body {
+  height: calc(100% - 48px);
+}
+
+ul {
+  padding: 5px 0 0 0;
+
+  &.sort-orders {
+    i {
+      color: #337ab7;
+    }
+  }
+
+  > li {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 2px 0;
+    font-size: small;
+  }
+
+  i {
+    width: 17px;
+    display: inline-block;
+    font-weight: 800;
+    font-style: normal;
+    cursor: default;
+  }
+
+  .expr-lambda {
+    > i {
+      font-family: serif;
+      color: lightseagreen;
+    }
+  }
+
+  .expr-attr-removal {
+    > i {
+      color: #337ab7
+    }
+    > span {
+      color: silver;
+      text-decoration: line-through;
+    }
+  }
+}
+
+section {
+  border-left: 1px solid whitesmoke;
+}
+
+:host /deep/ .ui-accordion {
+  .ui-accordion-header {
+    height: 27px;
+    border-radius: 0;
+    border-color: whitesmoke;
+
+    a {
+      padding-top: .33em;
+      text-decoration: none;
+      outline: none;
+    }
+
+    &.ui-state-active {
+      border-left: none;
+      border-bottom: none;
+    }
+  }
+
+  .ui-accordion-content {
+    padding: 0 0.3em 1em 1em;
+  }
+}
+

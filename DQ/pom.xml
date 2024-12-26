@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ms.jedi.dq</groupId>
+	<artifactId>DQ</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>DQ</name>
+	<description>JEDI-Data Quality Platform</description>
+	<packaging>pom</packaging>
+	<modules>
+		<module>DQ_Predict</module>
+		<module>DQ_PreProcess</module>
+		<module>DQ_PostProcess</module>
+		<module>DQ_Executor</module>
+		<module>Core</module>
+		<module>DQ_Schema</module>
+		<module>Lake_Observer</module>
+		<!-- <module>DataLineage</module> -->
+		<module>DQ_Merge</module>
+	</modules>
+</project>

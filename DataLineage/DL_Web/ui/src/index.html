@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+  /**
+ *
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer		viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+ */
+  -->
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/" th:href="@{/}">
+
+<link rel="icon" type="image/png" href="static/favicon.png"
+	th:href="@{favicon.png(t='${timestamp}')}">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<title>Data Lineage Visualization @PoweredBy VIRESH KUMAR</title>
+
+<style>
+html, body {
+	height: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: Roboto, sans-serif;
+}
+</style>
+
+</head>
+
+<body>
+
+	<app></app>
+
+	<script src="/assets/bundle.vendors~main.js"
+		th:src="@{/assets/bundle.vendors~main.js(t='${timestamp}')}"></script>
+	<script src="/assets/bundle.main.js"
+		th:src="@{/assets/bundle.main.js(t='${timestamp}')}"></script>
+</body>
+</html>

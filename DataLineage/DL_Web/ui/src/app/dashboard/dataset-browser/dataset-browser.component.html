@@ -1,0 +1,33 @@
+<!--
+/**
+ *
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer		viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+ */
+
+  -->
+
+<div class="search input-group">
+	<span class="input-group-addon"><mat-icon>search</mat-icon></span> <input
+		[formControl]="searchText" class="form-control" placeholder="Search">
+	<button mat-icon-button class="cancel" *ngIf="searchText.value.length"
+		(click)="searchText.reset('')">
+		<mat-icon>cancel</mat-icon>
+	</button>
+</div>
+
+<ul class="nav nav-pills nav-stacked" detect-scroll [bottomOffset]="300"
+	(onScroll)="onScroll($event)">
+
+	<li role="presentation" *ngFor="let d of descriptors"
+		[routerLink]="'dataset/'+d.datasetId+'/lineage/overview'"
+		fragment="datasource" [routerLinkActive]="['active']"><a
+		href="javascript:void(0)"> <b>{{d.path}}</b> <br /> <span
+			class="small" title="Spark application name">{{d.appName}}</span>
+	</a></li>
+</ul>
+
+<loading-indicator [active]="descriptors == null"></loading-indicator>

@@ -1,0 +1,24 @@
+<!--
+/*
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer		viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+ */
+  -->
+
+<h2 mat-dialog-title><i class="fa fa-clock-o fa-2x"></i> The request has timed out</h2>
+<mat-dialog-content>
+    <p>
+        The server might be under high load or experiencing network issues.<br>
+        Your request took much longer time than usual and has been rejected by the server.<br>
+        You may retry, but under the current circumstances the server may require significant
+        amount of time to complete your request.
+    </p>
+    <strong>Do you want to retry and wait longer?</strong>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="true" tabindex="-1">Yes, I'm willing to wait</button>
+    <button mat-raised-button mat-dialog-close color="primary">No, I'll try later</button>
+</mat-dialog-actions>

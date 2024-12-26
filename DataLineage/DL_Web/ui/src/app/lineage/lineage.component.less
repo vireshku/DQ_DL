@@ -1,0 +1,105 @@
+/*
+ *
+ * @author      viresh kumar <virkumar@microsoft.com.com>
+ * @designer		viresh kumar <virkumar@microsoft.com.com>
+ * @developer   viresh kumar <virkumar@microsoft.com.com>
+ * @version     1.0
+ * @since       1.0
+ */
+
+
+:host {
+  height: 100%;
+  width: 100%;
+
+  > div {
+    height: 100%;
+
+    mat-grid-list {
+      height: 100%;
+    }
+    mat-grid-tile {
+      height: 100%;
+    }
+
+    graph {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+
+    .graph-toolbar {
+      background: white;
+      opacity: 0.8;
+      border-radius: 100px;
+      box-shadow: 0 0 100px 50px white;
+      position: absolute;
+
+      &.top {
+        top: 20px;
+      }
+      &.left {
+        left: 25px;
+      }
+      &.right {
+        right: 25px;
+      }
+      &.bottom {
+        bottom: 20px;
+      }
+
+      .mat-button {
+        min-width: 0;
+      }
+
+      .mat-icon-button {
+        width: auto;
+        padding: 0 7px;
+        .mat-icon {
+          font-size: 1.4em;
+        }
+      }
+    }
+
+    .details-container {
+      height: 100%;
+      width: 100%;
+      background: whitesmoke;
+
+      mat-tab-group {
+        height: 100%;
+
+        operation-node-details {
+          width: 100%;
+        }
+
+        a.btn.__view-executions {
+          float: right;
+        }
+
+        /deep/ .mat-tab-header {
+          .mat-tab-label {
+            i {
+              font-size: x-large;
+              position: absolute;
+              left: 6px;
+              top: 10px;
+
+              &.spl-tab-attr {
+                color: lightseagreen;
+              }
+            }
+          }
+        }
+
+        /deep/ .mat-tab-body-wrapper {
+          height: 100%;
+
+          .mat-tab-body-content {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
